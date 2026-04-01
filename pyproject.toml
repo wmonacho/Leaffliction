@@ -1,10 +1,14 @@
 [project]
 name = "leaffliction"
 version = "0.1.0"
-description = "Add your description here"
+description = "Leaf disease classification using computer vision"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
     "numpy>=2.4.3",
     "pandas>=3.0.1",
+    "opencv-python>=4.8.0",
+    "scikit-learn>=1.3.0",
+    "matplotlib>=3.8.0",
+    "joblib>=1.3.0",
 ]

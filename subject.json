@@ -1,0 +1,92 @@
+{
+  "project": {
+    "name": "Leaffliction [cite: 1]",
+    "domain": "Computer vision [cite: 2]",
+    "goal": "Image classification by disease recognition on leaves [cite: 3]",
+    "general_rules": {
+      "language": "Free to use any language, but Python is advised [cite: 51]",
+      "norm": "If done in Python, it must respect the norm (flake8) [cite: 51]",
+      "stability_requirement": "Functions should not quit unexpectedly (segmentation fault, bus error, double free, etc.)[cite: 42]. If this happens, the project will receive a 0 [cite: 43]"
+    },
+    "mandatory_parts": [
+      {
+        "part_number": 1,
+        "title": "Analysis of the Data Set [cite: 59]",
+        "program_name": "Distribution.[extension] [cite: 60]",
+        "input": "Takes as arguments a directory and fetches images in its subdirectories [cite: 60]",
+        "tasks": [
+          "Extract and analyze/understand the data set from the images [cite: 61]",
+          "Prompt pie charts and bar charts for each plant type [cite: 61]",
+          "Retrieve the name of the directory to name the chart's colones accordingly [cite: 61]"
+        ]
+      },
+      {
+        "part_number": 2,
+        "title": "Data augmentation [cite: 78]",
+        "program_name": "Augmentation.[extension] [cite: 89]",
+        "context": "The data set is not balanced [cite: 79]",
+        "goal": "Balance the number of images for each variety and disease [cite: 80]",
+        "suggested_techniques": [
+          "Flip [cite: 82]",
+          "Rotate [cite: 83]",
+          "Skew [cite: 84]",
+          "Shear [cite: 85]",
+          "Crop [cite: 86]",
+          "Distortion [cite: 87]"
+        ],
+        "output_requirements": [
+          "Display 6 types of data augmentation for each image given [cite: 88]",
+          "Save images with the original file name followed by the name of the type of augmentation [cite: 88]",
+          "Return this data set in an 'augmented_directory' for evaluation [cite: 102]"
+        ]
+      },
+      {
+        "part_number": 3,
+        "title": "Image Transformation [cite: 106]",
+        "program_name": "Transformation.[extension] [cite: 110]",
+        "recommendation": "Choose a language with a library that facilitates image-processing workflow like plantCV [cite: 107]",
+        "tasks": "Implement different methods of direct extraction of characteristics from an image of a leaf [cite: 108]",
+        "behavior": {
+          "single_image_input": "Display at least 6 image transformations [cite: 109] and a Color histogram [cite: 184]",
+          "directory_input": "Save all the image transformations in the specified destination directory [cite: 186]"
+        }
+      },
+      {
+        "part_number": 4,
+        "title": "Classification [cite: 196]",
+        "programs": [
+          {
+            "name": "train.[extension] [cite: 198]",
+            "input": "Takes as parameter a directory and fetches images in its subdirectories [cite: 199]",
+            "tasks": [
+              "Increase/modify images to learn the characteristics of the diseases [cite: 200]",
+              "Learnings must be saved and returned in a zip that also includes your increased/modified images [cite: 201]"
+            ]
+          },
+          {
+            "name": "predict.[extension] [cite: 212]",
+            "input": "Takes as arguments a path to an image from your learnings [cite: 210]",
+            "output": [
+              "Displays the original image and the transformed image [cite: 210]",
+              "Gives the type of disease specified in the leaf [cite: 210]"
+            ]
+          }
+        ],
+        "validation_requirements": {
+          "split": "Separate data set in two parts, one for Training and one for Validation [cite: 215]",
+          "accuracy_target": "Predictions of validation set must have an accuracy above 90% [cite: 216]",
+          "minimum_validation_images": "Minimum of 100 images in the validation set [cite: 216]"
+        }
+      }
+    ],
+    "turn_in_and_evaluation": {
+      "repository": "Turn your work in using your GiT repository [cite: 224]",
+      "allowed_files": "Only your programs and the signature.txt must be present in your repository [cite: 225]",
+      "forbidden_files": "It is FORBIDDEN to turn in your data set in your Git repository [cite: 237]",
+      "signature_txt_file": {
+        "description": "A hash of your DB which includes everything you need to run your programs correctly (dataset in sha1 format and training of your model) [cite: 227]",
+        "consequence_if_mismatch": "During the defense, if the signature of the signature.txt file is not identical to your data set, your grade will be 0 [cite: 238, 239]"
+      }
+    }
+  }
+}

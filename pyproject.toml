@@ -8,4 +8,5 @@ dependencies = [
     "numpy>=2.4.3",
     "pandas>=3.0.1",
     "matplotlib>=3.10.0",
+    "pillow>=12.2.0",
 ]

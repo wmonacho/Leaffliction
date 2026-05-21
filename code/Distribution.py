@@ -38,7 +38,7 @@ def create_charts(dataset, root_name):
     plt.show()
 
 
-def liste():
+def main():
     if len(sys.argv) != 2:
         print("Usage: un run python Distribution.py <directory_path>")
         return
@@ -56,4 +56,4 @@ def liste():
 
 
 if __name__ == "__main__":
-    liste()
+    main()

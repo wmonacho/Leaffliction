@@ -9,4 +9,6 @@ dependencies = [
     "pandas>=3.0.1",
     "matplotlib>=3.10.0",
     "pillow>=12.2.0",
+    "opencv-python>=4.13.0",
+    "plantcv>=4.11",
 ]

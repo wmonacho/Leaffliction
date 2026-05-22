@@ -76,10 +76,9 @@ def save_transformations(transformations, name_without_ext, ext, output_dir):
 
 
 def process_single_image(image):
-    print(image)
+    output_dir = "leaves/augmented_directory"
     name = os.path.basename(image)
     name_without_ext, ext = os.path.splitext(name)
-    output_dir = "leaves/augmented_directory"
     try:
         transformations = process(output_dir, image)
         save_transformations(
@@ -90,7 +89,7 @@ def process_single_image(image):
         display([transformations])
 
     except Exception as e:
-        print(f"❌ Erreur lors du traitement de {image} : {e}")
+        print(f"Erreur lors du traitement de {image} : {e}")
 
 
 def process_directory(dir):
@@ -119,7 +118,7 @@ def process_directory(dir):
                     preview_list.append(transformations)
 
             except Exception as e:
-                print(f"❌ Erreur pour {image_path} : {e}")
+                print(f"Erreur lors du traitement de {image_path} : {e}")
 
     if preview_list:
         display(preview_list)

@@ -10,7 +10,6 @@ def create_charts(dataset, root_name):
 
     labels = list(dataset.keys())
     values = list(dataset.values())
-    # 'get_cmap' récupére une palette variée
     cmap = plt.get_cmap("tab20")
     colors = [cmap(i / len(labels)) for i in range(len(labels))]
 
@@ -29,7 +28,6 @@ def create_charts(dataset, root_name):
         values,
         labels=labels,
         autopct='%1.1f%%',
-        startangle=140,
         colors=colors
     )
     ax2.set_title("Répartition en pourcentage")

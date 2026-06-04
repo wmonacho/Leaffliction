@@ -45,7 +45,7 @@ def main():
     dataset = {}
 
     for root, dirs, files in os.walk(path_argument):
-        file_ends = ".jpg", ".jpeg", ".png"
+        file_ends = ".jpg", ".jpeg", ".png", ".JPG", ".JPEG", ".PNG"
         liste_images = [f for f in files if f.lower().endswith((file_ends))]
         if len(liste_images) > 0:
             dataset[os.path.basename(root)] = len(liste_images)

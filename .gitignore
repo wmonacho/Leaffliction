@@ -12,4 +12,10 @@ env/
 .idea/
 .DS_Store
 
-leaves/augmented_directory
+# Data
+leaves/
+*.zip
+augmented_directory/
+transformed_directory/
+*.keras
+*.h5

@@ -90,6 +90,24 @@ Leaffliction/
 
 ---
 
+## 🔁 Pipeline
+
+`train` et `predict` appliquent **exactement** le même prétraitement, défini une seule fois dans [`code/preprocess.py`](code/preprocess.py). Aucun des deux programmes ne redimensionne ni ne normalise les images lui-même.
+
+| Étape | Choix | Détail |
+|---|---|---|
+| Entrée du modèle | Image **originale** | Pas de masque PlantCV : le CNN apprend à ignorer le fond, et `predict` reste rapide et robuste |
+| Lecture | `load_image(path)` | OpenCV lit en BGR, l'image est convertie en **RGB** immédiatement |
+| Taille | `IMG_SIZE = (128, 128)` | `cv2.resize` avec `INTER_AREA` (les images augmentées n'ont pas toutes la même taille) |
+| Normalisation | pixels `/ 255` → `float32` dans `[0, 1]` | Faite dans `preprocess()` uniquement, pas de couche `Rescaling` dans le modèle |
+| Classes | `sorted()` des dossiers du dataset | L'indice de sortie du modèle correspond à la position dans cette liste |
+
+La liste des classes est enregistrée dans `classes.json` à côté du modèle (`save_class_names`). `predict` la relit avec `load_class_names` et ne dépend donc pas de la présence du dataset.
+
+Les scripts de la partie 3 ([`Augmentation.py`](code/Augmentation.py), [`Transformation.py`](code/Transformation.py)) sont importables : leur dossier de sortie est passé en paramètre, et aucune fenêtre ne s'ouvre à l'import.
+
+---
+
 ## 🔬 Galerie des maladies
 
 Voici un aperçu visuel des différentes afflictions que le modèle peut rencontrer et classifier, directement issues de notre jeu de données.

@@ -6,6 +6,8 @@ import matplotlib.pyplot as plt
 import plantcv.plantcv as pcv
 from skimage.morphology import remove_small_objects
 
+DEFAULT_OUTPUT_DIR = "leaves/transformed_directory"
+
 
 def analyze_step(img, mask):
     labeled_mask, _ = pcv.create_labels(mask=mask)
@@ -31,7 +33,7 @@ def roi_step(img, mask):
         cv2.addWeighted(img, 0.4, green_overlay, 0.6, 0),
         img)
     cv2.rectangle(
-        roi_img
+        roi_img,
         (margin, margin),
         (w - margin, h - margin),
         (255, 0, 0), 2)
@@ -140,13 +142,13 @@ def process_single_image(image_path):
 
 
 def save_transformations(transformations, name_without_ext, ext, output_dir):
+    os.makedirs(output_dir, exist_ok=True)
     for suffix, img in transformations.items():
         new_filename = f"{name_without_ext}_{suffix}{ext}"
         cv2.imwrite(os.path.join(output_dir, new_filename), img)
 
 
-def process(output_dir, image_path):
-    os.makedirs(output_dir, exist_ok=True)
+def process(image_path):
     pcv.params.debug = None
 
     img, _, _ = pcv.readimage(filename=image_path)
@@ -165,8 +167,7 @@ def process(output_dir, image_path):
     }
 
 
-def process_directory(dir):
-    output_base = "leaves/transformed_directory"
+def process_directory(dir, output_base):
     image_extensions = {".jpg", ".jpeg", ".png", ".JPG", ".JPEG", ".PNG"}
 
     for root, _, files in os.walk(dir):
@@ -180,7 +181,7 @@ def process_directory(dir):
             output_dir = os.path.join(output_base, rel_path)
 
             try:
-                transformations = process(output_dir, image_path)
+                transformations = process(image_path)
                 save_transformations(
                     transformations,
                     name_without_ext,
@@ -199,7 +200,7 @@ def main():
     if os.path.isfile(t):
         process_single_image(t)
     elif os.path.isdir(t):
-        process_directory(t)
+        process_directory(t, DEFAULT_OUTPUT_DIR)
     else:
         print(f"Erreur : '{t}' n'est pas un fichier ou un dossier valide.")
         return

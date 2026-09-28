@@ -3,6 +3,8 @@ import os
 import matplotlib.pyplot as plt
 from PIL import ImageOps
 
+DEFAULT_OUTPUT_DIR = "leaves/augmented_directory"
+
 
 def mirror(image):
     return ImageOps.mirror(image)
@@ -36,8 +38,7 @@ def projective(image):
         ImageOps.Image.BICUBIC)
 
 
-def process(output_dir, image_path):
-    os.makedirs(output_dir, exist_ok=True)
+def process(image_path):
     original = ImageOps.Image.open(image_path)
     transformations = {
         "original": original,
@@ -70,17 +71,17 @@ def display(transformations_list):
 
 
 def save_transformations(transformations, name_without_ext, ext, output_dir):
+    os.makedirs(output_dir, exist_ok=True)
     for suffix, transformed_img in transformations.items():
         new_filename = f"{name_without_ext}_{suffix}{ext}"
         transformed_img.save(os.path.join(output_dir, new_filename))
 
 
-def process_single_image(image):
-    output_dir = "leaves/augmented_directory"
+def process_single_image(image, output_dir):
     name = os.path.basename(image)
     name_without_ext, ext = os.path.splitext(name)
     try:
-        transformations = process(output_dir, image)
+        transformations = process(image)
         save_transformations(
             transformations,
             name_without_ext,
@@ -92,8 +93,7 @@ def process_single_image(image):
         print(f"Erreur lors du traitement de {image} : {e}")
 
 
-def process_directory(dir):
-    output_base = "leaves/augmented_directory"
+def process_directory(dir, output_base):
     image_extensions = {".jpg", ".jpeg", ".png", ".JPG", ".JPEG", ".PNG"}
     preview_list = []
 
@@ -108,7 +108,7 @@ def process_directory(dir):
             output_dir = os.path.join(output_base, rel_path)
 
             try:
-                transformations = process(output_dir, image_path)
+                transformations = process(image_path)
                 save_transformations(
                     transformations,
                     name_without_ext,
@@ -132,9 +132,9 @@ def main():
     target = sys.argv[1]
 
     if os.path.isfile(target):
-        process_single_image(target)
+        process_single_image(target, DEFAULT_OUTPUT_DIR)
     elif os.path.isdir(target):
-        process_directory(target)
+        process_directory(target, DEFAULT_OUTPUT_DIR)
     else:
         print(f"Erreur : '{target}' n'est ni un fichier ni un dossier valide.")
 

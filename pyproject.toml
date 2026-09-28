@@ -11,4 +11,6 @@ dependencies = [
     "pillow>=12.2.0",
     "opencv-python>=4.13.0",
     "plantcv>=4.11",
+    "tensorflow>=2.21.0",
+    "scikit-image>=0.26.0",
 ]

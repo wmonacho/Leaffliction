@@ -14,3 +14,20 @@ dependencies = [
     "tensorflow>=2.21.0",
     "scikit-image>=0.26.0",
 ]
+
+[dependency-groups]
+dev = [
+    "pytest>=9.1.1",
+    "pytest-sugar>=1.1.1",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["code"]
+addopts = "-ra --color=yes"
+markers = [
+    "slow: tests lents (PlantCV, gros traitements)",
+]
+filterwarnings = [
+    "ignore::DeprecationWarning",
+]

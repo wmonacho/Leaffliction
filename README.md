@@ -69,6 +69,19 @@ Ce projet utilise [uv](https://github.com/astral-sh/uv), un gestionnaire de paqu
 
 ---
 
+## 🧪 Tests
+
+Les tests utilisent [pytest](https://docs.pytest.org/) avec [pytest-sugar](https://github.com/Teemu/pytest-sugar) (barre de progression animée, ✓ par test, erreurs affichées immédiatement). Ils tournent sur des images synthétiques générées à la volée : le dataset n'est pas nécessaire.
+
+```bash
+uv run pytest                 # toute la suite
+uv run pytest -v              # un test par ligne
+uv run pytest -m "not slow"   # sans les tests PlantCV
+uv run pytest tests/test_preprocess.py -k roundtrip
+```
+
+---
+
 ## 📁 Structure du projet
 
 ```

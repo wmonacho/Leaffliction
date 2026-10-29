@@ -41,13 +41,13 @@ def projective(image):
 def process(image_path):
     original = ImageOps.Image.open(image_path)
     transformations = {
-        "original": original,
-        "mirror": mirror(original),
-        "flip": flip(original),
-        "posterize": posterize(original),
-        "contrast": contrast(original),
-        "rotation": rotation(original),
-        "projective": projective(original)
+        "Original": original,
+        "Mirror": mirror(original),
+        "Flip": flip(original),
+        "Posterize": posterize(original),
+        "Contrast": contrast(original),
+        "Rotation": rotation(original),
+        "Projective": projective(original)
     }
     return transformations
 

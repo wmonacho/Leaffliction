@@ -14,8 +14,8 @@ MIN_CLASSES = 2
 MIN_VAL_IMAGES = 100
 # Suffixes added by Augmentation.process() to the original file name
 AUGMENTATION_SUFFIXES = (
-    "_original", "_mirror", "_flip", "_posterize",
-    "_contrast", "_rotation", "_projective")
+    "_Original", "_Mirror", "_Flip", "_Posterize",
+    "_Contrast", "_Rotation", "_Projective")
 
 
 class Sample(NamedTuple):
@@ -169,7 +169,7 @@ def split_dataset(
 def original_name(path: str) -> str:
     """Return the image name without extension or augmentation suffix.
 
-    "Apple_rust/image (1)_mirror.JPG" -> "image (1)"
+    "Apple_rust/image (1)_Mirror.JPG" -> "image (1)"
     """
     name = os.path.splitext(os.path.basename(path))[0]
     for suffix in AUGMENTATION_SUFFIXES:

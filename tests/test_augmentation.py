@@ -3,8 +3,8 @@ import pytest
 import Augmentation
 
 EXPECTED_KEYS = [
-    "original", "mirror", "flip", "posterize",
-    "contrast", "rotation", "projective",
+    "Original", "Mirror", "Flip", "Posterize",
+    "Contrast", "Rotation", "Projective",
 ]
 
 

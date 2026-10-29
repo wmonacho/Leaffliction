@@ -67,6 +67,16 @@ Ce projet utilise [uv](https://github.com/astral-sh/uv), un gestionnaire de paqu
    uv run python main.py
    ```
 
+### 🧭 Menu
+
+`main.py` ouvre un menu graphique (Tkinter) en trois écrans :
+
+1. **Accueil** : la fenêtre apparaît en fondu, puis on clique sur *Commencer*.
+2. **Menu** : une carte par programme. Les cartes grisées (*Bientôt disponible*) correspondent aux scripts qui n'existent pas encore dans `code/`.
+3. **Programme** : on choisit une image ou un dossier, on ajoute des options si besoin (ex. `--epochs 5`), puis on clique sur *Lancer*. La sortie du script s'affiche en direct.
+
+Pour ajouter un programme, il suffit d'ajouter une entrée dans la liste `PROGRAMS` en haut de `main.py`.
+
 ---
 
 ## 🧪 Tests
